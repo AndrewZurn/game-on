@@ -1,0 +1,174 @@
+html, body {
+	height: 100%;
+}
+
+#wrap {
+	min-height: 100%;
+	height: auto;
+	margin: 0 auto -55px;
+	padding: 0 0 55px;
+}
+
+.main {
+	margin-bottom: 10px;
+}
+
+.nav a {
+    -webkit-transition: all .2s ease-in-out;
+    -moz-transition: all .2s ease-in-out;
+    -o-transition: all .2s ease-in-out;
+    transform: all .2s ease-in-out;
+}
+
+.nav a:hover {
+    -webkit-transform: scale(1.15);
+    -moz-transform: scale(1.15);
+    -o-transform: scale(1.15);
+    transform: scale(1.15);
+}
+
+@media (min-width: 768px) {
+  	.home-box {
+		height: 225px;
+		margin-bottom: 15px;
+	}
+}
+@media (min-width: 992px) {
+  .home-box {
+		height: 350px;
+		padding-bottom: 15px;
+	}
+}
+@media (min-width: 1200px) {
+  .home-box {
+		height: 350px;
+		padding-bottom: 15px;
+	}
+}
+
+.game-image {
+    display:block;
+    margin:auto;
+	z-index: 0;
+}
+
+.game-info {
+	margin-top: 15px;
+	background-color: white;
+	background-image: none;
+  	border: 1px solid #cccccc;
+  	border-radius: 4px;
+  	-webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+  	box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+  	-webkit-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+  	-o-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+  	transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+  	z-index: 1;
+}
+
+.game-info a,strong {
+	margin-left: 5px;
+}
+
+.vote-button {
+	position: absolute;
+    right: 50px;
+    bottom: 50px;
+    -webkit-transition: all .2s ease-in-out;
+    -moz-transition: all .2s ease-in-out;
+    -o-transition: all .2s ease-in-out;
+    transform: all .2s ease-in-out;
+}
+
+@media(max-width:987px) {
+    .vote-button {
+        position: absolute;
+    	right: 50px;
+    	bottom: 32px;
+    }
+}
+
+.add-btn {
+	float: right;
+	margin: 5 5;
+}
+
+.vote-button:hover {
+    -webkit-transform: scale(1.2);
+    -moz-transform: scale(1.2);
+    -o-transform: scale(1.2);
+    transform: scale(1.2);
+}
+
+.game-title {
+    font-size: 16px;
+    margin-bottom: 0;
+}
+
+.site-title {
+    font-size: 25px;
+    font-weight: 900;
+}
+
+.owned-text {
+ padding-left: 10px;
+}
+
+.xtr-left {
+	padding-right: 25px;
+}
+
+.game-results {
+	margin-bottom: 8px;
+}
+
+.game-results-box {
+	line-height: 1.42857143;
+  	color: #333333;
+  	background-color: #ffffff;
+  	background-image: none;
+  	border: 1px solid #cccccc;
+  	border-radius: 4px;
+  	-webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+  	box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+  	-webkit-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+  	-o-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+  	transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+  	display: flex;
+  	align-items: center;
+  	margin-left: 18%;
+  	margin-right: 18%;
+}
+
+.game-results-box div {
+	margin-top: 5px;
+	margin-bottom: 5px;
+}
+
+@font-face {
+    font-family: 'x360';
+    font-style: normal;
+    font-weight: 400;
+    src: url('../fonts/x360.otf') format('otf'), url('../fonts/x360.svg') format('svg'), url('../fonts/x360.ttf') format('truetype');
+}
+
+.footer-section {
+    width: 100%;
+    padding: 10px 0 0 0;
+    border-color: #0C830C;
+    color: #fff;
+    height: 55px;
+    background-color: #89C310;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    background-size: cover;
+    -o-background-size: cover;
+}
+
+.404-container {
+	background-image: url("../images/where_is_waldo.png");
+}
+
+.flash-text {
+	color: #0C830C;
+}

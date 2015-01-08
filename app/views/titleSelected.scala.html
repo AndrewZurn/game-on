@@ -1,0 +1,68 @@
+@(gameForm: Form[Game], game: Game, categories: List[Category])
+@import helper._
+@import helper.twitterBootstrap._
+
+@main("Add a Title") {
+
+	<div class="navbar navbar-default navbar-fixed-top" id="navbar">
+    	<div class="container">
+       		<div class="navbar-header">
+            	<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+                	<span class="icon-bar"></span>
+                	<span class="icon-bar"></span>
+                	<span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="@routes.GameController.index()"><span class="site-title">Game-On</span></a>
+          	</div>
+          	<div class="navbar-collapse collapse navbar-responsive-collapse">
+          		<ul class="nav navbar-nav">
+                	<li><a href="@routes.GameController.voteIndex()">Vote</a></li>
+                  	<li class="active"><a href="@routes.AddGameController.index()">Add a Title</a></li>
+                  	<li><a href="@routes.ChangeGameStatusController.index()">Change Status</a></li>
+                </ul>
+        	</div>
+     	</div>
+ 	</div>
+ 	
+ 	<br/><br/><br/>
+ 	
+ 	<div class="container main">
+ 	
+ 		<div class="row text-center">
+			<div class="col-lg-10 col-lg-offset-1">
+    			<h2>Add A New Title</h2>
+	        </div>
+        </div>
+      	<br/><br/>
+      	
+      	@if(gameForm.hasErrors) {
+    		<span class="help-inline">@gameForm.errors.mkString(", ")</span> 
+		}
+		
+		@helper.form(action = routes.AddGameController.addTitle()) {
+			<div class="row">
+				<div class="col-md-4 col-md-offset-3">
+					<img alt="@game.getName() image" src="@game.getImageUrl()">
+				</div>
+				<div class="col-md-3">
+					<h3>@game.getName()</h3>
+					<h4><a href="@game.getDetailsUrl">More Details</a></h4>
+					<br/><br/>
+					
+					@select(
+     					gameForm("categoryId"),
+     					categories.map{ c =>
+   							c.getId.toString -> c.getName.toString
+  						},
+     					'_label -> "Category",
+     					'_showConstraints -> false
+ 					)
+ 					<br/><br/>
+ 					<button type="submit" name="addTitle" value="addTitle">Add Title</button>
+				</div>
+			</div>
+		}
+ 	
+ 	</div>
+
+}

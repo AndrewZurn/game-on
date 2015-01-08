@@ -1,0 +1,134 @@
+@(games: List[Game], ownedGames: List[Game])
+
+@main("Game-On Vote!") {
+
+	<div class="navbar navbar-default navbar-fixed-top" id="navbar">
+    	<div class="container">
+       		<div class="navbar-header">
+            	<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+                	<span class="icon-bar"></span>
+                	<span class="icon-bar"></span>
+                	<span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="@routes.GameController.index()"><span class="site-title">Game-On</span></a>
+          	</div>
+          	<div class="navbar-collapse collapse navbar-responsive-collapse">
+          		<ul class="nav navbar-nav">
+                	<li class="active"><a href="@routes.GameController.voteIndex()">Vote</a></li>
+                  	<li><a href="@routes.AddGameController.index()">Add a Title</a></li>
+                  	<li><a href="@routes.ChangeGameStatusController.index()">Change Status</a></li>
+                </ul>
+        	</div>
+     	</div>
+ 	</div>
+ 	
+ 	<br/><br/><br/>
+ 	
+ 	<div class="container">
+    	<div class="row text-center">
+   			<div class="col-lg-10 col-lg-offset-1">
+            	<h2>Games We Want</h2>
+     		</div>
+  		</div>
+  		
+  		@if(flash.contains("vote_status")) {
+	   		<h4 class="flash-text text-center">@flash.get("vote_status")</h4>
+		}
+		
+		@if(flash.contains("add_status")) {
+	   		<h4 class="flash-text text-center">@flash.get("add_status")</h4>
+		}
+   		<br/><br/>
+   		
+        <div class="row">
+       	@for(index <- 0 until games.size){
+       		@if(index % 3 == 0 ) {
+       			</div>
+       			<div class="row">
+       				<div class="col-md-4">
+          				<div class="panel panel-primary">
+      						<div class="panel-heading">
+                        		<p class="game-title">@games(index).getName()</p>
+                      		</div>
+                      		<div class="panel-body">
+                      			<img class="game-image" alt="@games(index).getName() image" src="@games(index).getImageUrl()">
+                      			<div class="game-info">
+	                      			<strong>Category:</strong> @games(index).getCategory().getName()<br/>
+	                        		<strong>Current Vote:</strong> @games(index).getVotes().size()<br/>
+	                        		<strong><a href="@games(index).getDetailsUrl()">More Details</a></strong>
+	                        		<div class="vote-button">
+	                            		<a href="@routes.GameController.addGameVote(games(index).getId())">
+	                           				<img src="@routes.Assets.at("images/vote_up.png")" 
+	                           					alt="vote for @games(index).getId()"/>
+	                           			</a>
+	                        		</div>
+                        		</div>
+                      		</div>
+                    	</div>
+                    </div>
+       		} else {
+       			<div class="col-md-4">
+          			<div class="panel panel-primary">
+      					<div class="panel-heading">
+                       		<p class="game-title">@games(index).getName()</p>
+                   		</div>
+                   		<div class="panel-body">
+                   			<img class="game-image" alt="@games(index).getName() image" src="@games(index).getImageUrl()">
+                   			<div class="game-info">
+	                      		<strong>Category:</strong> @games(index).getCategory().getName()<br/>
+	                        	<strong>Current Vote:</strong> @games(index).getVotes().size()<br/>
+	                       		<strong><a href="@games(index).getDetailsUrl()">More Details</a></strong>
+	                       		<div class="vote-button">
+	                           		<a href="@routes.GameController.addGameVote(games(index).getId())">
+	                       				<img src="@routes.Assets.at("images/vote_up.png")" 
+	                       					alt="vote for @games(index).getId()"/>
+	                       			</a>
+	                       		</div>
+                       		</div>
+                   		</div>
+                   	</div>
+          		 </div>
+       		}
+       	}
+       	</div>
+       	
+       	<h4 class="text-center">Games we Own</h4>
+       	<div class="row">
+       	@for(index <- 0 until ownedGames.size){
+       		@if(index % 3 == 0 ) {
+       			</div>
+       			<div class="row">
+       				<div class="col-md-4">
+          				<div class="panel panel-primary">
+      						<div class="panel-heading">
+                        		<p class="game-title">@ownedGames(index).getName()</p>
+                      		</div>
+                      		<div class="panel-body">
+                      			<img class="game-image" alt="@ownedGames(index).getName() image" src="@ownedGames(index).getImageUrl()">
+                      			<div class="game-info">
+	                      			<strong>Category:</strong> @ownedGames(index).getCategory().getName()<br/>
+	                        		<strong><a href="@ownedGames(index).getDetailsUrl()">More Details</a></strong>	                 
+                        		</div>
+                      		</div>
+                    	</div>
+                    </div>
+       		} else {
+       			<div class="col-md-4">
+          			<div class="panel panel-primary">
+      					<div class="panel-heading">
+                       		<p class="game-title">@ownedGames(index).getName()</p>
+                   		</div>
+                   		<div class="panel-body">
+                   			<img class="game-image" alt="@ownedGames(index).getName() image" src="@ownedGames(index).getImageUrl()">
+                   			<div class="game-info">
+	                      		<strong>Category:</strong> @ownedGames(index).getCategory().getName()<br/>
+	                       		<strong><a href="@ownedGames(index).getDetailsUrl()">More Details</a></strong>
+                       		</div>
+                   		</div>
+                   	</div>
+          		 </div>
+       		}
+       	}
+       	</div>
+	</div>
+}

@@ -1,0 +1,91 @@
+@(gameForm: Form[Game], parsedGames: List[Game])
+@import helper.twitterBootstrap._
+
+@main("Add a Title!") {
+
+ 	<div class="navbar navbar-default navbar-fixed-top" id="navbar">
+    	<div class="container">
+       		<div class="navbar-header">
+            	<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+                	<span class="icon-bar"></span>
+                	<span class="icon-bar"></span>
+                	<span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="@routes.GameController.index()"><span class="site-title">Game-On</span></a>
+          	</div>
+          	<div class="navbar-collapse collapse navbar-responsive-collapse">
+          		<ul class="nav navbar-nav">
+                	<li><a href="@routes.GameController.voteIndex()">Vote</a></li>
+                  	<li class="active"><a href="@routes.AddGameController.index()">Add a Title</a></li>
+                  	<li><a href="@routes.ChangeGameStatusController.index()">Change Status</a></li>
+                </ul>
+        	</div>
+     	</div>
+ 	</div>
+ 	
+ 	<br/><br/><br/>
+ 	
+ 	<div class="container main">
+		<div class="row text-center">
+			<div class="col-lg-10 col-lg-offset-1">
+    			<h2>Add A New Title</h2>
+	        </div>
+        </div>
+      	<br/>
+      	
+      	@if(flash.contains("search_error")) {
+	   		<h4 class="flash-text text-center">@flash.get("search_error")</h4>
+		}
+      	
+      	@if(gameForm.hasErrors) {
+    		<span class="help-inline">@gameForm.errors.mkString(", ")</span> 
+		}
+    	  	
+		<div class="row">
+        	<div class="col-md-6 col-md-offset-3">
+        		<fieldset>
+	        			@helper.form(action = routes.AddGameController.searchForTitle()) {
+						@helper.input(gameForm("searchTerm"), '_label -> "Search for a New Title") { ( id, name, value, args ) =>
+							<input type="text" class="form-control" name="@name" id="@id" @toHtmlArgs(args) />
+							<i class="glyphicon glyphicon-search form-control-feedback xtr-left"></i>
+						}
+					</fieldset>
+					<button type="submit" class="add-btn" name="addTitle" value="addTitle">Search</button>
+				}
+			</div>
+		</div><br/>
+		
+		@if(parsedGames != null) {
+			@for(game <- parsedGames ) {
+				<div class="row game-results">
+					<div class="game-results-box">
+						<div class="col-md-1 col-md-offset-1">
+							<img alt="@game.getName() image" src="@game.getImageUrl()" width="35" height="50"/>
+						</div>
+						<div class="col-md-4 game-results-title">
+							<strong>@game.getName()</strong>
+						</div>
+						<div class="col-md-2">
+							<a href="@game.getDetailsUrl()">More Details</a>
+						</div>
+						@if(game.isOwned()) {
+							<div class="col-md-2 col-md-offset-1">
+								Owned
+							</div>
+						} else { 
+							@if(game.getId() != null ) { <!-- Might be better to call database to see if exists -->
+								<div class="col-md-2 col-md-offset-1">
+									<a href="@routes.GameController.addGameVote(game.getId())">Vote</a>
+								</div>
+							} else {
+								<div class="col-md-2 col-md-offset-1">
+									<a href="@routes.AddGameController.titleSelected(game.getName())">Add Title</a>
+								</div> 
+							}
+						}
+					</div>
+				</div>
+			}
+		}
+	</div>
+}

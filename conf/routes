@@ -1,0 +1,26 @@
+# Routes
+# This file defines all application routes (Higher priority routes first)
+# ~~~~
+
+# Game home page
+GET		/								controllers.GameController.index()
+GET		/index							controllers.GameController.index()
+GET		/games							controllers.GameController.voteIndex()
+
+# Add game vote
+GET		/games/vote/:gameId				controllers.GameController.addGameVote(gameId: Long)
+
+# Add a game to the database
+GET		/games/search					controllers.AddGameController.index()
+POST	/games/search					controllers.AddGameController.searchForTitle()
+GET		/games/search/:gameName			controllers.AddGameController.titleSelected(gameName: String)
+POST	/games/search/add				controllers.AddGameController.addTitle()
+
+
+# Game change status
+GET		/games/status					controllers.ChangeGameStatusController.index()
+GET		/games/status/:gameId			controllers.ChangeGameStatusController.changeGameStatus(gameId: Long)
+
+
+# Map static resources from the /public folder to the /assets URL path
+GET     /assets/*file               controllers.Assets.at(path="/public", file)

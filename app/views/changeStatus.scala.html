@@ -1,0 +1,81 @@
+@(games: List[Game], ownedGames: List[Game])
+
+@main("Game-On Vote!") {
+
+	<div class="navbar navbar-default navbar-fixed-top" id="navbar">
+    	<div class="container">
+       		<div class="navbar-header">
+            	<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+                	<span class="icon-bar"></span>
+                	<span class="icon-bar"></span>
+                	<span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="@routes.GameController.index()"><span class="site-title">Game-On</span></a>
+          	</div>
+          	<div class="navbar-collapse collapse navbar-responsive-collapse">
+          		<ul class="nav navbar-nav">
+                	<li><a href="@routes.GameController.voteIndex()">Vote</a></li>
+                  	<li><a href="@routes.AddGameController.index()">Add a Title</a></li>
+                  	<li class="active"><a href="@routes.ChangeGameStatusController.index()">Change Status</a></li>
+                </ul>
+        	</div>
+     	</div>
+ 	</div>
+ 	
+ 	<br/><br/><br/>
+ 	
+ 	<div class="container">
+    	<div class="row text-center">
+   			<div class="col-lg-10 col-lg-offset-1">
+            	<h2>Games We Want</h2>
+     		</div>
+  		</div>
+        
+		@for(game <- games ) {
+			<div class="row game-results">
+				<div class="game-results-box">
+					<div class="col-md-1">
+						<img alt="@game.getName() image" src="@game.getImageUrl()" width="35" height="50"/>
+					</div>
+					<div class="col-md-3 game-results-title">
+						<strong>@game.getName()</strong><br/>
+					</div>
+					<div class="col-md-3">
+						<strong>Category:</strong> @game.getCategory().getName()
+					</div>
+					<div class="col-md-2">
+						Votes: @game.getVotes().size()
+					</div>
+					<div class="col-md-2 owned-text">
+       					<a href="@routes.ChangeGameStatusController.changeGameStatus(game.getId())">
+          					Mark Owned
+           				</a>
+           			</div>
+				</div>
+			</div>
+		}
+		<br/><br/>
+		
+		<h4 class="text-center">Games We Own</h4>
+		@for(ownedGame <- ownedGames ) {
+			<div class="row game-results">
+				<div class="game-results-box">
+					<div class="col-md-1">
+						<img alt="@ownedGame.getName() image" src="@ownedGame.getImageUrl()" width="35" height="50"/>
+					</div>
+					<div class="col-md-3 game-results-title">
+						<strong>@ownedGame.getName()</strong><br/>
+					</div>
+					<div class="col-md-3">
+						<strong>Category:</strong> @ownedGame.getCategory().getName()
+					</div>
+					<div class="col-md-3 owned-text col-md-offset-1">
+       					<a href="@routes.ChangeGameStatusController.changeGameStatus(ownedGame.getId())">
+          					Mark Unowned
+          				</a>
+           			</div>
+				</div>
+			</div>
+		}
+	</div>
+}

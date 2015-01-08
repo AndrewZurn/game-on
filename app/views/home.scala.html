@@ -1,0 +1,64 @@
+@main("Game On - Home") {
+
+ 	<div class="navbar navbar-default navbar-fixed-top" id="navbar">
+    	<div class="container">
+       		<div class="navbar-header">
+            	<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+                	<span class="icon-bar"></span>
+                	<span class="icon-bar"></span>
+                	<span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="@routes.GameController.index()"><span class="site-title">Game-On</span></a>
+          	</div>
+          	<div class="navbar-collapse collapse navbar-responsive-collapse">
+          		<ul class="nav navbar-nav">
+                	<li><a href="@routes.GameController.voteIndex()">Vote</a></li>
+                  	<li><a href="@routes.AddGameController.index()">Add a Title</a></li>
+                  	<li><a href="@routes.ChangeGameStatusController.index()">Change Status</a></li>
+                </ul>
+        	</div>
+     	</div>
+ 	</div>
+ 	
+ 	<br/><br/><br/>
+ 	
+ 	<div class="container">
+	    <div class="row text-center">
+	        <div class="col-lg-10 col-lg-offset-1">
+	            <h1>Game-On</h1>
+	            <h5>For Nerds, by Nerds</h5>
+	        </div>
+	    </div>
+	    <br/><br/>
+	    <div class="row">
+	        <div class="col-md-4 home-box">
+	            <div class="well home-box">
+	                <h2 class="text-center">Vote</h2>
+	                <p>Vote for your favorite title in which you would like to see the Nerdery own!  Be careful with your choice though, as you can only vote once a day! If we make our weekly goals, we'll buy the top title and add it to our Xbox 360 collection. Vote away nerds!</p><br/>
+	                <div class="text-center">
+	                    <a class="btn btn-primary" type="button" href="@routes.GameController.voteIndex()">Go Vote</a>
+	                </div>
+	            </div>
+	        </div>
+	        <div class="col-md-4">
+	            <div class="well home-box">
+	                <h2 class="text-center">Add a Title</h2>
+	                <p>Search for any title that you can think of, and try to find it for you! When you find your game, and if we don't already own it, or have it in our catalog, you can submit it for voting.  You will also use your vote for the day when you submit it for voting.</p><br/>
+	                <div class="text-center">
+	                    <a class="btn btn-primary" type="button" href="@routes.AddGameController.index()">Add a Title</a>
+	                </div>
+	            </div>
+	        </div>
+	        <div class="col-md-4 home-box">
+	            <div class="well home-box">
+	                <h2 class="text-center">Change Status</h2>
+	                <p>At the end of the week, if we've made our weekly productivity goals, we'll change the status of the winner of the most votes to 'Owned', remove it from voting, and buy the game for everyone to share. A new game, how awesome is that?</p><br/>
+	                <div class="text-center">
+	                    <a class="btn btn-primary home-btn" type="button" href="@routes.ChangeGameStatusController.index()">Change Status</a>
+	                </div>
+	            </div>
+	        </div>
+	    </div>
+	    <br/>
+	</div>
+}
